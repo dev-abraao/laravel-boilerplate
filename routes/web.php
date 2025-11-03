@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 // Currently, only the login.view and dashboard routes utilize middleware. Additional routes should be incorporated as necessary.
 
-Route::view('/', 'welcome')->name('login.view')->middleware('guest');
+Route::get('/', function () {
+    return Inertia::render('Test');
+})->name('login.view')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::view('/register', 'auth.register')->name('register.view');
